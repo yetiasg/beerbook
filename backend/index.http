@@ -1,0 +1,125 @@
+### root page
+GET http://localhost:8080/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDljMWM3ZTdiYTlkOTRiYTBjZjEzNWIiLCJpYXQiOjE2MjA4OTEzNTcsImV4cCI6MTYyMDg5NDk1N30.osgstVMRnefA-EBc6-VB3ucj3k7rqkw7NfjucIxY1zU
+
+### login page
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+    "email": "yetiasgii@gmail.com",
+    "password": "mojesupertajnehaslo1234"
+}
+
+
+### register page
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+    "email": "yetiasgii@gmail.com",
+    "password": "mojesupertajnehaslo1234",
+    "repeat_password": "mojesupertajnehaslo1234"
+}
+
+
+### refresh page
+POST http://localhost:8080/auth/refresh
+Content-Type: application/json
+
+{
+    "refToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhNzhkZTU0ZWJhZDNiYmMyNjU4OWYiLCJpYXQiOjE2MjE4MzYwNTQsImV4cCI6MTY1MzM5MzY1NH0.sQwVZQkrXToeR38TKQPN3uNx_DHKi-FCMg5kLzQRiMg"
+}
+
+
+### beer list
+GET http://localhost:8080/beers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDljMWM3ZTdiYTlkOTRiYTBjZjEzNWIiLCJpYXQiOjE2MjA4OTEzNTcsImV4cCI6MTYyMDg5NDk1N30.osgstVMRnefA-EBc6-VB3ucj3k7rqkw7NfjucIxY1zU
+
+
+### single beer
+GET http://localhost:8080/beer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDljMWM3ZTdiYTlkOTRiYTBjZjEzNWIiLCJpYXQiOjE2MjA4OTEzNTcsImV4cCI6MTYyMDg5NDk1N30.osgstVMRnefA-EBc6-VB3ucj3k7rqkw7NfjucIxY1zU
+Content-Type: application/json
+
+{
+    "beerId": "609cd7186bed315ffc211cea"
+}
+
+
+### add beer
+PUT http://localhost:8080/beer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDljMWM3ZTdiYTlkOTRiYTBjZjEzNWIiLCJpYXQiOjE2MjA4OTEzNTcsImV4cCI6MTYyMDg5NDk1N30.osgstVMRnefA-EBc6-VB3ucj3k7rqkw7NfjucIxY1zU
+Content-Type: application/json
+
+{
+    "beer": {
+        "nazwa": "Hazy morning",
+        "styl": "APA",
+        "browar": "PINTA",
+        "cena": 20,
+        "pojemnosc": 500,
+        "ilosc": 2,
+        "data_wypicia": "2020-05-15",
+        "ibu": 30,
+        "blg": 18,
+        "ileChmielu": 15,
+        "alkohol": 5.5,
+        "ocena": 6,
+        "miejsce": "Pisaek",
+        "kraj": "Polska",
+        "img": [
+            {"title": "dgsaetnsah", "path": "/images/userId/photods1ac3f.jpg"},
+            {"title": "yiy7utriet", "path": "/images/userId/photods52f85.jpg"},
+            {"title": "bzdtujrtuj", "path": "/images/userId/photods54d28.jpg"}
+        ]
+    }
+}
+
+
+
+
+
+### update single beer
+PATCH  http://localhost:8080/beer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDljMWM3ZTdiYTlkOTRiYTBjZjEzNWIiLCJpYXQiOjE2MjA4OTEzNTcsImV4cCI6MTYyMDg5NDk1N30.osgstVMRnefA-EBc6-VB3ucj3k7rqkw7NfjucIxY1zU
+Content-Type: application/json
+
+{
+    "beerId": "609cd7186bed315ffc211cea",
+    "updateBeerData": {
+        "nazwa": "morning",
+        "styl": "APA",
+        "browar": "PINTA",
+        "cena": 20,
+        "pojemnosc": 500,
+        "ilosc": 2,
+        "data_wypicia": "2020-05-15",
+        "ibu": 30,
+        "blg": 18,
+        "ileChmielu": 15,
+        "alkohol": 5.5,
+        "ocena": 6,
+        "miejsce": "Pisaek",
+        "kraj": "Polska",
+        "img": [
+            {"title": "dgsaetnsah", "path": "/images/userId/photods1ac3f.jpg"},
+            {"title": "yiy7utriet", "path": "/images/userId/photods52f85.jpg"},
+            {"title": "bzdtujrtuj", "path": "/images/userId/photods54d28.jpg"}
+        ]
+    }
+}
+
+
+
+
+
+
+### delete single beer
+DELETE http://localhost:8080/beer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDljMWM3ZTdiYTlkOTRiYTBjZjEzNWIiLCJpYXQiOjE2MjA4OTEzNTcsImV4cCI6MTYyMDg5NDk1N30.osgstVMRnefA-EBc6-VB3ucj3k7rqkw7NfjucIxY1zU
+Content-Type: application/json
+
+{
+    "beerId": "c"
+}
