@@ -7,7 +7,7 @@ const hashPassword = async password => {
         const hashedPassword = await bcrypt.hash(password, salt);
         return hashedPassword;
     }catch (error){
-        throw createError("Could not hash password");
+        throw createError.InternalServerError("Could not hash password");
     }
 };
 
@@ -15,7 +15,7 @@ const comparePassword = async (password, hashedPassword) => {
     try{
         return await bcrypt.compare(password, hashedPassword);
     }catch (error){
-        throw createError("Could not compare password");
+        throw createError.InternalServerError("Could not compare password");
     }
 };
 

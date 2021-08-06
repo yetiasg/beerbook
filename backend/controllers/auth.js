@@ -3,7 +3,7 @@ const {getDB} = require('../helpers/database');
 const {loginSchema, registerSchema} = require('../helpers/validation');
 const {hashPassword, comparePassword} = require('../helpers/bcrypt_helper');
 const {signAccessToken, signRefreshToken, verifyRefreshToken} = require('../helpers/jwt_helper');
-
+const config = require('../config');
 
 exports.login = async(req, res, next) => {
     try{
@@ -15,8 +15,8 @@ exports.login = async(req, res, next) => {
         const doMatch = await comparePassword(password, user.password);
         if(!doMatch) throw createError.Unauthorized('Username/password not valid');
         const token = await signAccessToken(user._id);
-        const refToken = await signRefreshToken(user._id);
-        res.status(200).json({token, refToken, _id: user._id, exiresIn: process.env.TOKEN_EXPIRATION})
+        const refreshToken = await signRefreshToken(user._id);
+        res.status(200).json({token, refreshToken, userId: user._id, expiresIn: config.auth.TOKEN_EXPIRATION});
     }catch (error){
         if(error.isJoi === true) error.status = 422;
         next(error);
@@ -34,8 +34,8 @@ exports.register = async(req, res, next) => {
         const newUser = await usersCollection.insertOne({email, password});
         let userId = newUser.insertedId;
         const token = await signAccessToken(userId);
-        const refToken = await signRefreshToken(userId);
-        res.status(200).json({token, refToken, userId, exiresIn: process.env.TOKEN_EXPIRATION});
+        const refreshToken = await signRefreshToken(userId);
+        res.status(200).json({token, refreshToken, userId, exiresIn: config.auth.TOKEN_EXPIRATION});
     }catch (error){
         if(error.isJoi === true) error.status = 422;
         next(error);
@@ -44,17 +44,11 @@ exports.register = async(req, res, next) => {
 
 exports.refresh = async(req, res, next) => {
     try{
-        const {refToken} = req.body;
-        // const db = await getDB();
-        // const refTokenBlackListCollection = await db.collection('refTokenBlackList');   //połączenie z kolecją
-        // const result = await refTokenBlackListCollection.findOne({"tokens.refToken": refToken}); //czy token jest w kolekcji
-        // if(result) throw createError.Unauthorized();  //jeśli jest to bład
-        // throw createError.Unauthorized()
-        const userId = await verifyRefreshToken(refToken);  //weryfikuj reftoken
-        // await refTokenBlackListCollection.insertOne({tokens: {refToken: refToken}}); // dodaj stary token do kolekcji
-        const token = await signAccessToken(userId);    //podpisz nowy access token
-        const refreshToken = await signRefreshToken(userId);        //podpisz nofy ref token
-        res.status(220).json({token, refToken: refreshToken, userId, exiresIn: process.env.TOKEN_EXPIRATION});
+        let {refreshToken} = req.body;
+        const userId = await verifyRefreshToken(refreshToken);
+        const token = await signAccessToken(userId);
+        refreshToken = await signRefreshToken(userId);
+        res.status(220).json({token, refreshToken, userId, exiresIn: config.auth.TOKEN_EXPIRATION});
     }catch (error){
         next(error);
     }

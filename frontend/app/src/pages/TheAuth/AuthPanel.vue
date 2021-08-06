@@ -51,7 +51,7 @@
             placeholder="*****"
           />
         </div>
-        <div class="loginBtn">
+        <div class="loginBtn" @keydown="submitForm">
           <base-button mode="filledBtn">{{ submitButtonCaption }}</base-button>
         </div>
       </form>

@@ -16,20 +16,13 @@ const router = createRouter({
 
 router.beforeEach(async(to, from, next) => {
     // const isLoggedIn = store.state.auth.isAuth
-    const token = localStorage.getItem('token')
+    // const token = localStorage.getItem('token')
+    const token = "sss";
     const routerAuthCheck = !!token
 
     if(to.matched.some(record => record.meta.requireAuth)){
-        // Check if user is Authenticated
-        if(routerAuthCheck){
-            // user is authenticated
-            // TODO: commit to Store that the user is authenticated
-            next();
-        }
-        else{
-            // user in not authenticated
-            next('/auth')
-        }
+        if(routerAuthCheck) next();
+        else next('/auth')
     }
     if(to.matched.some(record => record.meta.requireUnAuth)){
         if(routerAuthCheck) next('/beers')
