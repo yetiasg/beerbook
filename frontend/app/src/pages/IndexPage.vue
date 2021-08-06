@@ -26,11 +26,42 @@ export default {
         } 
 
         .infoBox{
-            background-color: white;
-            border-radius: 20px;
             width: 92%;
             min-height: 88vh;
-            padding: 1rem;
+        }
+    }
+
+    @media screen and (min-width: 361px) and (max-width: 768px){
+        .indexPage {
+            font-size: 0.9rem;
+        } 
+
+        .infoBox{
+            width: 88%;
+            min-height: 87vh; 
+        }
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px){
+        .indexPage {
+            font-size: 1rem;
+        } 
+
+        .infoBox{
+            width: 85%;
+            min-height: 86vh;
+        }
+    }
+
+    @media screen and (min-width: 1025px){
+        .indexPage {
+            font-size: 1rem;
+        } 
+
+        .infoBox{
+            width:85%;
+            max-width: 1024px;
+            min-height: 85vh;
         }
     }
     
@@ -43,4 +74,10 @@ export default {
         justify-content: space-between;
         align-items: center;
     }
+
+     .infoBox{
+        background-color: white;
+        border-radius: 20px;
+        padding: 1rem;
+     }
 </style>

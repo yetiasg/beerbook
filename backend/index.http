@@ -7,8 +7,8 @@ POST http://localhost:8080/auth/login
 Content-Type: application/json
 
 {
-    "email": "yetiasgii@gmail.com",
-    "password": "mojesupertajnehaslo1234"
+    "email": "yetiasg@gmail.com",
+    "password": "123456789"
 }
 
 
@@ -17,9 +17,9 @@ POST http://localhost:8080/auth/register
 Content-Type: application/json
 
 {
-    "email": "yetiasgii@gmail.com",
-    "password": "mojesupertajnehaslo1234",
-    "repeat_password": "mojesupertajnehaslo1234"
+    "email": "yetiasg@gmail.com",
+    "password": "123456789",
+    "repeat_password": "123456789"
 }
 
 
@@ -28,7 +28,7 @@ POST http://localhost:8080/auth/refresh
 Content-Type: application/json
 
 {
-    "refToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhNzhkZTU0ZWJhZDNiYmMyNjU4OWYiLCJpYXQiOjE2MjE4MzYwNTQsImV4cCI6MTY1MzM5MzY1NH0.sQwVZQkrXToeR38TKQPN3uNx_DHKi-FCMg5kLzQRiMg"
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTAyY2E3NWFjODIyNTUwNTgxZWFlOTkiLCJpYXQiOjE2MjgyNTQzOTQsImV4cCI6MTY1OTgxMTk5NH0.qT6HVbgciMStv3KTYFV_59lEoKkxRBu3Pmf1uRC7DUU"
 }
 
 

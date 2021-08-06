@@ -1,44 +1,79 @@
 <template>
-    <div class="mainHeader">
+    <section>
         <the-header></the-header>
-    </div>
-    <h2><base-button @click="logout" mode="filledBtn">Wyloguj</base-button></h2>
-    <div class="footer">
+        <div class="infoBox"></div>
         <the-footer></the-footer>
-    </div>
+</section>
+
 </template>
 <script>
+import TheHeader from '../../components/layout/TheHeader.vue';
+import TheFooter from '../../components/layout/TheFooter.vue';
 export default {
-    methods: {
-        logout(){
-            this.$store.dispatch('logout')
-            this.$router.replace('/auth')
-        }
+    components:{
+        TheHeader,
+        TheFooter
     }
 }
 </script>
 
-<style>
-    h3, h2{
-        color: red;
-        position: absolute;
-    }
-    h2{
-        top: 100px;
-        right: 50px;
-    }
-    div.mainHeader{
-        position: absolute;
-        width:100%;
-        top: -140px;
-        overflow: hidden;
+<style scoped>
+
+    @media screen and (max-width: 360px) {
+        .indexPage {
+            font-size: 0.8rem;
+        } 
+
+        .infoBox{
+            width: 92%;
+            min-height: 88vh;
+        }
     }
 
-    div.footer{
-        position: absolute;
-        width:100%;
-        height: 150px;
-        bottom: 0;
-        overflow: hidden;
+    @media screen and (min-width: 361px) and (max-width: 768px){
+        .indexPage {
+            font-size: 0.9rem;
+        } 
+
+        .infoBox{
+            width: 88%;
+            min-height: 87vh; 
+        }
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px){
+        .indexPage {
+            font-size: 1rem;
+        } 
+
+        .infoBox{
+            width: 85%;
+            min-height: 86vh;
+        }
+    }
+
+    @media screen and (min-width: 1025px){
+        .indexPage {
+            font-size: 1rem;
+        } 
+
+        .infoBox{
+            width:85%;
+            max-width: 1024px;
+            min-height: 85vh;
+        }
+    }
+    
+     .infoBox{
+        background-color: rgb(240, 240, 240);
+     }
+
+    section{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
     }
 </style>

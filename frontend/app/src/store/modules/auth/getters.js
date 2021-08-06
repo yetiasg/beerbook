@@ -6,8 +6,5 @@ export default{
     getToken(state){
         if(!state.userId || !state.token || !state.refreshToken) return null
         else return state.token
-    },
-    isAuthenticated(state){
-        return state.isAuth
     }
 }

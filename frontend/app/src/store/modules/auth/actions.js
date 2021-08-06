@@ -1,43 +1,65 @@
-import router from '../../../router.js'
+import router from '../../../router.js';
+import config from '../../../config.js';
+
+// helpers----------------------------------------------
+const getJSON = async(url, options) =>{
+    const response = await fetch(url, options);
+    if (!response.ok) throw new Error(response.message);
+    const data = await response.json();
+    return data;
+};
+  
+const expirationTime = (time) => {
+    return time * 1000 * 60 * 60;
+}
+  //------------------------------------------------------
+
+let timer;
 
 export default{
-    async login(context, payload){
+    login: async (context, payload) => {
         const {email, password} = payload;
         try{
-            const response = await fetch('http://localhost:8080/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                })
+          const resData = await getJSON(`${config.BASE_URL}/auth/login`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              email: email,
+              password: password
             })
-
-            const resData = await response.json()
-            if(!response.ok){
-                let error = new Error(resData.error.message || 'Failed to authenticate.')
-                throw error;
-            }
-            const {token, refToken, _id} = resData;
-            const userPayload = {
-                token: token,
-                refreshToken: refToken,
-                userId: _id
-            }
-            context.commit('setUserData', userPayload)
-            localStorage.setItem('token', token);
-            localStorage.setItem('refreshToken', refToken);
-            localStorage.setItem('userId', _id);
+          });
+          let {token, refreshToken, userId} = resData;
+          let expiresIn = expirationTime(resData.expiresIn);
+          const expirationDate = new Date().getTime() + expiresIn;
+    
+          const userPayload = {
+            token,
+            refreshToken,
+            userId,
+            espiresIn: expirationDate
+          }
+    
+          context.commit('setUserData', userPayload);
+          localStorage.setItem('token', token);
+          localStorage.setItem('refreshToken', refreshToken);
+          localStorage.setItem('userId', userId);
+          localStorage.setItem('expiresIn', expirationDate);
+    
+          timer = setTimeout(function(){
+            context.dispatch('refreshAuth');
+          }, expiresIn);
+    
         }catch (error){
-            console.log(error)
+          console.log(error.message)
         }
-    },
+      },
+
     async register(context, payload){
         const {email, password, passwordRepeat} = payload;
         try{
-            const response = await fetch('http://localhost:8080/auth/register', {
+            const resData = await getJSON(`${config.BASE_URL}/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -49,60 +71,69 @@ export default{
                 })
             })
 
-            
-            const resData = await response.json()
-            if(!response.ok){
-                let error = new Error(resData.error.message || 'Failed to authenticate.')
-                throw error;
-            }
-            const {token, refToken, _id} = resData;
+            const {token, refreshToken, userId} = resData;
+            let expiresIn = expirationTime(resData.expiresIn);
+            const expirationDate = new Date().getTime() + expiresIn;
+
             const userPayload = {
-                token: token,
-                refreshToken: refToken,
-                userId: _id
+                token,
+                refreshToken,
+                userId,
+                expiresIn: expirationDate
             }
-            context.commit('setUserData', userPayload)
-            localStorage.setItem('token', token)
-            localStorage.setItem('refreshToken', refToken)
-            localStorage.setItem('userId', _id)
+
+            context.commit('setUserData', userPayload);
+            localStorage.setItem('token', token);
+            localStorage.setItem('refreshToken', refreshToken);
+            localStorage.setItem('userId', userId);
+            localStorage.setItem('expiresIn', expirationDate);
+      
+            timer = setTimeout(function(){
+                context.dispatch('refreshAuth');
+            }, expiresIn);
+            
         }catch (error){
-            console.log(error.message)
+            console.log("Can not register now")
         }
     },
-    async refreshAuth(context){
+    refreshAuth: async context => {
+        const refreshToken = localStorage.getItem('refreshToken')
+        if(refreshToken == '') throw new Error('Unauthorized')
+    
         try{
-            const refreshToken = localStorage.getItem('refreshToken')
-            if(refreshToken.length < 1) throw new Error('Unauthorized')
-            const response = await fetch('http://localhost:8080/auth/refresh', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    refToken: refreshToken
-                })
+          const resData = await getJSON(`${config.BASE_URL}/auth/refresh`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              refreshToken
             })
+          });
 
-            const resData = await response.json()
-            if(!response.ok){
-                const error = resData.error
-                throw error;
-            }
-            const {token, refToken, userId} = resData;
+          const {token, refreshToken, userId} = resData;
+          let expiresIn = expirationTime(resData.expiresIn);
+          const expirationDate = new Date().getTime() + expiresIn;
+
             const userPayload = {
                 token: token,
-                refreshToken: refToken,
+                refreshToken: refreshToken,
                 userId: userId
             }
             
-            localStorage.setItem('token', token)
-            localStorage.setItem('refreshToken', refToken)
-            localStorage.setItem('userId', userId)
-            context.commit('setUserData', userPayload)
+            context.commit('setUserData', userPayload);
+            localStorage.setItem('token', token);
+            localStorage.setItem('refreshToken', refreshToken);
+            localStorage.setItem('userId', userId);
+            localStorage.setItem('expiresIn', expirationDate);
+      
+            timer = setTimeout(function(){
+              context.dispatch('refreshAuth');
+            }, expiresIn);
+
         }catch (error){
             if(error.status === 401){
                 context.dispatch('logout')
-                router.replace('/auth')
             }
         }
     },
@@ -110,23 +141,43 @@ export default{
         const token = localStorage.getItem('token')
         const refreshToken = localStorage.getItem('refreshToken')
         const userId = localStorage.getItem('userId')
+
+        let expiresIn = localStorage.getItem('expiresIn');
+
+        expiresIn = +expiresIn - new Date().getTime();
+        if(expiresIn < 0){
+          return;
+        }
+    
+        timer = setTimeout(function(){
+          context.dispatch('refreshAuth');
+        }, expiresIn);
+
+
         if(token.length > 0 && refreshToken.length > 0 && userId.length > 0){
             const userPayload = {
                 token,
                 refreshToken,
-                userId
+                userId,
+                expiresIn
             }
             context.commit('setUserData', userPayload)
         }else{
             context.dispatch('logout')
-            router.replace('/auth')
-            throw new Error('Unauthorized')
         }
     },
-    logout(context){
-        context.commit('logout')
-        localStorage.removeItem('token')
-        localStorage.removeItem('refreshToken')
-        localStorage.removeItem('userId')
+    logout: (context) =>{
+        context.commit('logout');
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('expiresIn');
+        clearTimeout(timer);
+        router.replace('/auth');
+    },
+
+    autoLogout: (context) => {
+        context.dispatch('logout');
+        context.commit('setAutoLogout');
     }
 }

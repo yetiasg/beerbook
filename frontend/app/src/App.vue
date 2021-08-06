@@ -4,8 +4,8 @@
 
 <script>
 export default {
-    beforeCreate(){
-        this.$store.dispatch('refreshAuth')
+    mounted(){
+        this.$store.dispatch('tryLogin')
     }
 }
 </script>

@@ -124,7 +124,7 @@ export default {
       }
     },
     isLoggedIn() {
-      return this.$store.getters.isAuthenticated;
+      return this.$store.state.auth.isAuth;
     },
   },
 };
