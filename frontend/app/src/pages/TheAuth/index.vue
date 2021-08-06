@@ -1,63 +1,32 @@
 <template>
-    <div class="container">
-        <!-- <div class="mainHeader">
-            <the-header></the-header>
-            <header>
-                <div class="logo"><router-link to="/"><p>beerbook</p></router-link></div>
-            </header>
-        </div> -->
-        
+    <section>
+        <the-header></the-header>
         <auth-panel></auth-panel>
-
-        <!-- <div class="footer">
-            <the-footer></the-footer>
-        </div> -->
-    </div>
+        <the-footer></the-footer>
+    </section>
 </template>
 
 <script>
-import AuthPanel from './AuthPanel.vue'
+import AuthPanel from './AuthPanel.vue';
+import TheHeader from '../../components/layout/TheHeader.vue';
+import TheFooter from '../../components/layout/TheFooter.vue';
 export default {
-    components: {AuthPanel}
+    components: {
+        AuthPanel,
+        TheHeader,
+        TheFooter
+    }
 }
 </script>
 
 <style scoped>
-    div.mainHeader{
-        position: absolute;
-        width:100%;
-        top: -140px;
-        overflow: hidden;
-    }
-
-    header{
-        background-color: transparent;
-        display: flex;
-        position: absolute;
-        left: 28.5%;
-        top: 200px;
-        width: 1100px;
-        justify-content: flex-start;
-        align-items: center;
-    }
-
-    .logo{
-        font-size: 2rem;
-    }
-
-    div.container{
+    section{
         width:100%;
         height: 100vh;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
     }
 
-    div.footer{
-        position: absolute;
-        width:100%;
-        height: 150px;
-        bottom: 0;
-        overflow: hidden;
-    }
 </style>

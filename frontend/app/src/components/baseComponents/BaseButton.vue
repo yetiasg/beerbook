@@ -35,7 +35,6 @@ export default {
             font-size: 0.8rem;
             padding: 0;
         }
-
     }
 
     @media screen and (min-width: 361px) {
@@ -45,13 +44,8 @@ export default {
             min-width: 7.5rem;
         }
 
-        .filledBtn{
+        .filledBtn, .borderBtn{
             margin: 10px;
-        }
-        
-        .borderBtn{
-            margin: 10px;
-
         }
     }
     

@@ -31,4 +31,10 @@ export default {
     a{
         text-decoration: none;
     }
+
+    @media screen and (max-width: 360px) {
+        body {
+            background-color: #fcf0da;
+        } 
+    }
 </style>

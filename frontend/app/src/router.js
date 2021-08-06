@@ -28,7 +28,7 @@ router.beforeEach(async(to, from, next) => {
         if(routerAuthCheck) next('/beers')
         else next()
     }
-    next()
+    else next()
 })
 
 export default router
