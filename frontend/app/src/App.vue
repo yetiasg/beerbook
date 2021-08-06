@@ -25,16 +25,11 @@ export default {
     }
 
     body{
-        font-weight: 400;         
+        font-weight: 400;    
     }
 
     a{
         text-decoration: none;
     }
 
-    @media screen and (max-width: 360px) {
-        body {
-            background-color: #fcf0da;
-        } 
-    }
 </style>

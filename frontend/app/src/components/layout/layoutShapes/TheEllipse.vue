@@ -5,12 +5,10 @@
 
 <style scoped>
     .ellipse{
-        --widthEllipse: 110%;
-        position: relative;
-        left: calc(50% - var(--widthEllipse)/2);
-        width: var(--widthEllipse);
-        height: 300px;
-        background-color: #FCF0DA;
+        position: fixed;
+        background-color: hsla(39, 85%, 92%, 0.9);
+        z-index: -1;
         border-radius: 50%;
+        z-index: -1;
     }
 </style>

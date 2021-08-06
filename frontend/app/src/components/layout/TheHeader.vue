@@ -25,7 +25,7 @@ export default {
 <style scoped>
   @media screen and (max-width: 360px) {
     header{
-      height: calc((100vh - 88vh)/2);
+      height: calc((100vh - 85vh)/2);
     }
     p{
       font-size: 1.2rem;
@@ -38,7 +38,7 @@ export default {
 
   @media screen and (min-width: 361px) and (max-width: 768px){
     header{
-      height: calc((100vh - 88vh)/2);
+      height: calc((100vh - 84vh)/2);
     }
     p{
       font-size: 1.2rem;
@@ -49,9 +49,9 @@ export default {
     }
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1023px){
+  @media screen and (min-width: 768px) and (max-width: 1024px){
     header{
-      height: calc((100vh - 86vh)/2);
+      height: calc((100vh - 83vh)/2);
     }
     p{
       font-size: 1.2rem;
@@ -64,7 +64,7 @@ export default {
 
   @media screen and (min-width: 1025px){
     header{
-      height: calc((100vh - 85vh)/2);
+      height: calc((100vh - 83vh)/2);
     }
     p{
       font-size: 1.2rem;

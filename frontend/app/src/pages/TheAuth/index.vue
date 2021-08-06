@@ -29,4 +29,10 @@ export default {
         align-items: center;
     }
 
+    @media screen and (max-width: 360px) {
+        section {
+            background-color: #fcf0da;
+        } 
+    }
+
 </style>
