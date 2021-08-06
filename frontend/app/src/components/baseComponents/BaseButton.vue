@@ -30,26 +30,48 @@ export default {
 </script>
 
 <style scoped>
+    @media screen and (max-width: 360px) {
+        button{
+            font-size: 0.8rem;
+            padding: 0;
+        }
+
+    }
+
+    @media screen and (min-width: 361px) {
+        button{
+            font-size: 1rem;
+            cursor: pointer;
+            min-width: 7.5rem;
+        }
+
+        .filledBtn{
+            margin: 10px;
+        }
+        
+        .borderBtn{
+            margin: 10px;
+
+        }
+    }
+    
     button{
-        font-size: 1rem;
         letter-spacing: 1px;
-        cursor: pointer;
+        padding: 0.5rem 1rem;
+        margin:10px;
+
     }
 
     .clearBtn{
         border: none;
         background-color: transparent;
-        padding: 0.5rem 1rem;
         border-radius: 20px;
     }
 
     .filledBtn{
         background-color: rgb(246, 227, 192);
-        padding: 0.5rem 1rem;
         border: 2px solid rgb(246, 227, 192);
         border-radius: 20px;
-        margin: 10px;
-        min-width: 7.5rem;
         width:100%;
         transition: 0.1s;
     }
@@ -62,11 +84,8 @@ export default {
     .borderBtn{
         border: 2px solid rgb(246, 227, 192);
         background-color: transparent;
-        padding: 0.5rem 1rem;
         border-radius: 20px;
-        margin: 10px;
         box-sizing: border-box;
-        min-width: 7.5rem;
         width:100%;
         transition: 0.1s;        
     }

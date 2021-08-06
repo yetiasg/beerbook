@@ -17,7 +17,7 @@ const router = createRouter({
 router.beforeEach(async(to, from, next) => {
     // const isLoggedIn = store.state.auth.isAuth
     // const token = localStorage.getItem('token')
-    const token = "sss";
+    const token = "";
     const routerAuthCheck = !!token
 
     if(to.matched.some(record => record.meta.requireAuth)){

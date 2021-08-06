@@ -1,16 +1,17 @@
 <template>
-    <div class="mainHeader">
-        <the-header></the-header>
-        <header>
-            <div class="logo"><router-link to="/"><p>beerbook</p></router-link></div>
-        </header>
-    </div>
     <div class="container">
+        <!-- <div class="mainHeader">
+            <the-header></the-header>
+            <header>
+                <div class="logo"><router-link to="/"><p>beerbook</p></router-link></div>
+            </header>
+        </div> -->
+        
         <auth-panel></auth-panel>
-    </div>
-    
-    <div class="footer">
-        <the-footer></the-footer>
+
+        <!-- <div class="footer">
+            <the-footer></the-footer>
+        </div> -->
     </div>
 </template>
 
