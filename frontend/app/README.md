@@ -1,4 +1,4 @@
-# app.js
+# beerbook
 
 ## Project setup
 ```
