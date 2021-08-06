@@ -5,7 +5,7 @@
 
 <style scoped>
     .circle{
-        position: absolute;
+        position: fixed;
         width: 100%;
         height: 100%;
         background-color: #F6E3C0;

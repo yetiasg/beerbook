@@ -9,6 +9,5 @@
         background-color: hsla(39, 85%, 92%, 0.9);
         z-index: -1;
         border-radius: 50%;
-        z-index: -1;
     }
 </style>

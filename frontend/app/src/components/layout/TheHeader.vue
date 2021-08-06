@@ -49,20 +49,7 @@ export default {
     }
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1024px){
-    header{
-      height: calc((100vh - 83vh)/2);
-    }
-    p{
-      font-size: 1.2rem;
-      padding: 0 0 0 calc(((100% - 85%)/2) + 1%);
-    }
-    .accountBtn{
-      padding: 0 calc(((100% - 85%)/2) + 1%) 0 0;
-    }
-  }
-
-  @media screen and (min-width: 1025px){
+  @media screen and (min-width: 768px){
     header{
       height: calc((100vh - 83vh)/2);
     }
