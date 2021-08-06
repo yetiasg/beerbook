@@ -30,7 +30,6 @@ app.use('/auth', authRoute);
 
 app.use(async(req, res, next) => {
     res.status(404).json('This route does not exist');
-    next(createError.NotFound('This route does not exist'));
 });
 
 app.use((err, req, res, next) => {
