@@ -14,8 +14,8 @@ const router = createRouter({
 })
 
 router.beforeEach(async(to, from, next) => {
-    // const token = localStorage.getItem('token')
-    const token = "g";
+    const token = localStorage.getItem('token')
+    // const token = "g";
     const routerAuthCheck = !!token
 
     if(to.matched.some(record => record.meta.requireAuth)){

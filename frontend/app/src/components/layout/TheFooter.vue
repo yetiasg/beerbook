@@ -1,8 +1,19 @@
 <template>
   <footer>
-   <p>created by cherryvue.com</p>
+   <p>created by {{createdBy.username}} - <a :href="createdBy.repo">{{createdBy.repo}}</a></p>
   </footer>
 </template>
+
+<script>
+import config from '../../config.js';
+export default {
+  computed: {
+    createdBy(){
+      return config.AUTHOR;
+    }
+  }
+}
+</script>
 
 <style scoped>
   p{
