@@ -32,6 +32,7 @@ export default {
     },
     setCurrentPage(){
       this.$store.commit('setCurrentPage', this.currentPage)
+      window.scrollTo(0,0);
     },
   }
 }
@@ -46,16 +47,15 @@ export default {
     align-items: center;
     margin: 4rem;
     font-size: 1.4rem;
-
   }
 
   .arrow:first-child:hover{
-    transform: translateX(-5px);
+    transform: translateX(-3px);
     transition: ease-in-out 0.1s ;
   }
 
     .arrow:last-child:hover{
-    transform: translateX(5px);
+    transform: translateX(3px);
     transition: ease-in-out 0.1s ;
   }
 

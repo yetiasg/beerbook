@@ -10,10 +10,15 @@ const router = createRouter({
         {path: '/', name: 'rootRoute', component: IndexPage},
         {path: '/beers', name: 'beers', component: TheBeers, meta: {requireAuth: true}},
         {path: '/auth', name: 'auth', component: TheAuth, meta: {requireUnAuth: true}},
-    ]
+        {path: '/:notFound(.*)', name: 'NotFoundRoute', redirect: '/'}
+    ],
+    scrollBehavior(){
+        return {top: 0}
+    }
 })
 
 router.beforeEach(async(to, from, next) => {
+    
     // const token = localStorage.getItem('token')
     const token = "g";
     const routerAuthCheck = !!token

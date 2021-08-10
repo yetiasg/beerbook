@@ -1,7 +1,7 @@
  <template>
   <section>
     <ul>
-      <li v-for="beer in beers" :key="beer.id">
+      <li v-for="beer in beers" :key="beer.id" @click="goToBeer(beer.id)">
         <img :src="beer.img" :alt="beer.name">
         <div class="data">
           <span>
@@ -17,9 +17,14 @@
 
 <script>
 export default {
-  data(){
-    return{
-      beers: this.$store.state.requests.beers
+  methods: {
+    goToBeer(id){
+      console.log(id)
+    }
+  },
+  computed:{
+    beers(){
+      return this.$store.getters.getBeers;
     }
   }
 }
@@ -43,6 +48,7 @@ export default {
     margin: 1rem;
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(49, 49, 49, 0.15);
+    cursor: pointer;
   }
 
   .data{
