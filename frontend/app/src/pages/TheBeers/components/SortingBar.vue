@@ -27,7 +27,7 @@ export default {
 <style scoped>
   .sorting-bar{
     width: 100%;
-    height: 6rem;
+    min-height: 6rem;
     display: flex;
     flex-direction: row;
     margin: 2rem 0 1rem 0;
@@ -36,7 +36,7 @@ export default {
 
   .sorting-bar p{
     position: absolute;
-    top: -1.7rem;
+    top: -0.8rem;
     left: 0.3rem;
   }
 
@@ -63,5 +63,6 @@ export default {
   li{
     padding:0.3rem;
     cursor: pointer;
+    padding: 0 0.5rem;
   }
 </style>
