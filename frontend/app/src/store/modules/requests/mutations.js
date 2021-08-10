@@ -8,4 +8,7 @@ export default{
   setCurrentPage(state, payload){
     state.currentPage = payload
   },
+  setSelectedBeer(state, payload){
+    state.selectedBeer = payload
+  }
 }

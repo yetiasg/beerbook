@@ -46,7 +46,9 @@ export default{
             currentPage: 1,
             perPage: 20,
             amountOfPages: null,
-            amountOfBeers: null
+            amountOfBeers: null,
+
+            selectedBeer: null
         }
     },
     mutations,

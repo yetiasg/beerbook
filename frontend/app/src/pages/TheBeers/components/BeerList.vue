@@ -1,7 +1,7 @@
  <template>
   <section>
     <ul>
-      <li v-for="beer in beers" :key="beer.id" @click="goToBeer(beer.id)">
+      <li v-for="beer in beers" :key="beer.id" @click="selectBeer(beer.id)">
         <img :src="beer.img" :alt="beer.name">
         <div class="data">
           <span>
@@ -18,8 +18,8 @@
 <script>
 export default {
   methods: {
-    goToBeer(id){
-      console.log(id)
+    selectBeer(id){
+      this.$store.commit('setSelectedBeer', id);
     }
   },
   computed:{

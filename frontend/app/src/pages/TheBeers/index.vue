@@ -3,9 +3,10 @@
         <the-ellipse class="ellipseTop"></the-ellipse>
         <the-header></the-header>
         <div class="infoBox">
-            <beer-list></beer-list>
-            <the-paginator></the-paginator>
+            <beer-list v-if="!selectedBeer"></beer-list>
+            <the-paginator v-if="!selectedBeer"></the-paginator>
         </div>
+        <beer-details v-if="selectedBeer"></beer-details>
         <the-footer></the-footer>
         <the-ellipse class="ellipseBottom"></the-ellipse>
     </section>
@@ -17,16 +18,23 @@ import TheFooter from '../../components/layout/TheFooter.vue';
 import TheEllipse from '../../components/layout/layoutShapes/TheEllipse.vue';
 import BeerList from './components/BeerList.vue';
 import ThePaginator from './components/ThePaginator.vue';
+import BeerDetails from './components/BeerDetails.vue';
 export default {
     components:{
         TheHeader,
         TheFooter,
         TheEllipse,
         BeerList,
-        ThePaginator
+        ThePaginator,
+        BeerDetails
     },
     mounted(){
         this.$store.dispatch('loadBeers');
+    },
+    computed: {
+    selectedBeer(){
+      return this.$store.state.requests.selectedBeer
+    }
     }
 }
 
