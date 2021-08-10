@@ -1,6 +1,6 @@
  <template>
   <section>
-    <h3>Sorting Bar</h3>
+    <h3>Berr List</h3>
   </section>
 </template>
 
