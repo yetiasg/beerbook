@@ -4,9 +4,7 @@
         <the-header></the-header>
         <div class="infoBox">
             <beer-list></beer-list>
-                <div class="pagination">
-                    abadbiusefhwiuefghs
-                </div>
+            <the-paginator></the-paginator>
         </div>
         <the-footer></the-footer>
         <the-ellipse class="ellipseBottom"></the-ellipse>
@@ -18,14 +16,21 @@ import TheHeader from '../../components/layout/TheHeader.vue';
 import TheFooter from '../../components/layout/TheFooter.vue';
 import TheEllipse from '../../components/layout/layoutShapes/TheEllipse.vue';
 import BeerList from './components/BeerList.vue';
+import ThePaginator from './components/ThePaginator.vue';
 export default {
     components:{
         TheHeader,
         TheFooter,
         TheEllipse,
-        BeerList
+        BeerList,
+        ThePaginator
+    },
+    mounted(){
+        this.$store.dispatch('loadBeers');
     }
 }
+
+
 </script>
 
 
