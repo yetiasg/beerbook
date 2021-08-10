@@ -1,7 +1,7 @@
 <template>
   <div class="details" @click="backToBeers">
-    <div class="details-container">
-      <h3>{{selectedBeerId}}</h3>
+    <div class="details-container" @click.stop>
+      <h3>{{selectedBeer}}</h3>
     </div>
   </div>
 </template>
@@ -10,7 +10,7 @@
 export default {
   data(){
     return{
-      selectedBeerId: this.$store.state.requests.selectedBeer
+      selectedBeer: this.$store.state.requests.selectedBeer
     }
   },
   methods:{
