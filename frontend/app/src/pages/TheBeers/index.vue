@@ -2,7 +2,12 @@
     <section>
         <the-ellipse class="ellipseTop"></the-ellipse>
         <the-header></the-header>
-        <div class="infoBox"></div>
+        <div class="infoBox">
+            <beer-list></beer-list>
+                <div class="pagination">
+                    abadbiusefhwiuefghs
+                </div>
+        </div>
         <the-footer></the-footer>
         <the-ellipse class="ellipseBottom"></the-ellipse>
     </section>
@@ -12,11 +17,13 @@
 import TheHeader from '../../components/layout/TheHeader.vue';
 import TheFooter from '../../components/layout/TheFooter.vue';
 import TheEllipse from '../../components/layout/layoutShapes/TheEllipse.vue';
+import BeerList from './components/BeerList.vue';
 export default {
     components:{
         TheHeader,
         TheFooter,
-        TheEllipse
+        TheEllipse,
+        BeerList
     }
 }
 </script>
@@ -24,6 +31,13 @@ export default {
 
 
 <style scoped>
+    .infoBox{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
     .ellipseBottom, .ellipseTop{
         position: fixed;
         z-index: -1;
@@ -125,7 +139,6 @@ export default {
 
     section{
         width: 100%;
-        min-height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
