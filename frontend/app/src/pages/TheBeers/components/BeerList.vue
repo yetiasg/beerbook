@@ -47,7 +47,8 @@ export default {
     background-color: rgb(255, 255, 255);
     margin: 1rem;
     border-radius: 10px;
-    box-shadow: 0 0 5px rgba(49, 49, 49, 0.15);
+    box-shadow: 0 0 5px rgba(100, 100, 100, 0.15);
+    /* border: 1px solid rgba(180, 180, 180, 0.253); */
     cursor: pointer;
   }
 

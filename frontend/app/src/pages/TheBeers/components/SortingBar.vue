@@ -47,7 +47,9 @@ export default {
     padding: 1rem;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
-    box-shadow: 0 0 5px rgba(49, 49, 49, 0.15);
+    /* box-shadow: 0 0 5px rgba(49, 49, 49, 0.15); */
+    box-shadow: 0 0 5px rgba(100, 100, 100, 0.15);
+
   }
 
   ul{

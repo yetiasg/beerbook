@@ -7,7 +7,7 @@
             <beer-list></beer-list>
             <the-paginator></the-paginator>
         </div>
-        <beer-details v-if="selectedBeer"></beer-details>
+        <modal-view v-if="selectedBeer"></modal-view>
         <the-footer></the-footer>
         <the-ellipse class="ellipseBottom"></the-ellipse>
     </section>
@@ -19,7 +19,7 @@ import TheFooter from '../../components/layout/TheFooter.vue';
 import TheEllipse from '../../components/layout/layoutShapes/TheEllipse.vue';
 import BeerList from './components/BeerList.vue';
 import ThePaginator from './components/ThePaginator.vue';
-import BeerDetails from './components/BeerDetails.vue';
+import ModalView from './components/ModalView.vue';
 import SortingBar from './components/SortingBar.vue';
 export default {
     components:{
@@ -28,23 +28,19 @@ export default {
         TheEllipse,
         BeerList,
         ThePaginator,
-        BeerDetails,
+        ModalView,
         SortingBar
     },
     mounted(){
         this.$store.dispatch('loadBeers');
     },
     computed: {
-    selectedBeer(){
-      return this.$store.state.requests.selectedBeer
-    }
+        selectedBeer(){
+        return this.$store.state.requests.selectedBeer
+        }
     }
 }
-
-
 </script>
-
-
 
 <style scoped>
     .infoBox{
